@@ -1,0 +1,5 @@
+.venv_index/
+__pycache__/
+*.pyc
+indexes/
+input/products_enriched.jsonl
