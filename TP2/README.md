@@ -1,4 +1,3 @@
-
 ## 1. Project Objective
 
 The objective of this project is to **build several types of indexes** from an e-commerce product dataset in order to **prepare the construction of a search engine**.
@@ -6,7 +5,7 @@ The objective of this project is to **build several types of indexes** from an e
 This project focuses **only on indexing**.
 Web crawling is **out of scope** and handled in a separate project.
 
----
+
 
 ## 2. Input Data
 
@@ -40,7 +39,7 @@ Example:
 }
 ```
 
----
+
 
 ## 3. Implemented Functionalities and Index Structures
 
@@ -68,7 +67,7 @@ Example:
 
 This step ensures that product identification is **explicit and structured**.
 
----
+
 
 ### 3.2 Inverted Index — Title
 
@@ -95,7 +94,7 @@ This step ensures that product identification is **explicit and structured**.
 
 Each token is associated with the **list of document URLs** in which it appears.
 
----
+
 
 ### 3.3 Inverted Index — Description
 
@@ -117,7 +116,7 @@ The same indexing strategy is applied to the `description` field.
 
 This index captures **richer textual information** than titles alone.
 
----
+
 
 ### 3.4 Positional Index — Title and Description
 
@@ -146,7 +145,7 @@ This index enables:
 * phrase search
 * proximity search
 
----
+
 
 ### 3.5 Reviews Index (Non-Inverted)
 
@@ -171,7 +170,7 @@ For each product:
 
 This index is **not inverted**, as required by the instructions, and is intended for **ranking purposes**.
 
----
+
 
 ### 3.6 Feature Indexes (Brand, Origin, Material)
 
@@ -215,25 +214,22 @@ A **separate inverted index is built for each feature**.
 **Bonus feature implemented**: `material`
 (as allowed by the assignment instructions).
 
----
+
 
 ## 4. Index Persistence
 
 Each index is saved into a **separate JSON file**, as required.
 
 ```text
-output/
+indexes/
 ├── title_index.json
 ├── description_index.json
-├── title_positional_index.json
-├── description_positional_index.json
 ├── review_index.json
-├── feature_index_brand.json
-├── feature_index_made_in.json
-├── feature_index_material.json
+├── brand_index.json
+├── made_in.json
 ```
 
----
+
 
 ## 5. How to Run the Project
 
@@ -269,7 +265,6 @@ indexer.build_review_index()
 indexer.save_indexes()
 ```
 
----
 
 ## 6. Design Choices
 
@@ -280,7 +275,7 @@ indexer.save_indexes()
 * Each function performs **one single action**, in accordance with the programming guidelines.
 * Indexing logic is encapsulated in a dedicated `Indexer` class for clarity and maintainability.
 
----
+
 
 ## 7. Conclusion
 
