@@ -16,27 +16,21 @@ def linear_score(doc_url, query_tokens,
 
     score = 0.0
 
-    # --- BM25 / présence texte ---
     for token in query_tokens:
         if doc_url in title_index.get(token, []):
-            score += 4    # title = signal fort
+            score += 4 
 
         if doc_url in desc_index.get(token, []):
-            score += 1    # description = signal plus faible
+            score += 1   
 
-        # --- BRAND signal ---
         if token in brand_index and doc_url in brand_index[token]:
             score += 2
 
-        # --- ORIGIN signal ---
         if token in origin_index and doc_url in origin_index[token]:
             score += 2
 
-    # --- Exact match boost (titre) ---
     if all(doc_url in title_index.get(t, []) for t in query_tokens):
         score += 7
-
-    # --- Reviews signal ---
     reviews = review_index.get(doc_url)
     if reviews:
         score += 2 * reviews.get("mean_mark", 0)

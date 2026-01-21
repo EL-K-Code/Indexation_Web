@@ -2,10 +2,7 @@ import json
 import spacy
 from nltk.corpus import stopwords
 
-# Load spaCy model for tokenization & lemmatization
 nlp = spacy.load("en_core_web_sm")
-
-# Stopwords explicitly from NLTK (as required)
 STOPWORDS = set(stopwords.words("english"))
 
 
@@ -74,7 +71,6 @@ def process_query(query: str):
     tokens = tokenize(query)
     tokens = expand_country_synonyms(tokens)
 
-    # Deduplicate while preserving order
     tokens = list(dict.fromkeys(tokens))
 
     return tokens

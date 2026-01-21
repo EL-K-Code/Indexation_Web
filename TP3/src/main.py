@@ -3,21 +3,18 @@ import json
 from loader import load_all_json_from_dir
 from search import search
 
-# --- Load indexes ---
+
 indexes = load_all_json_from_dir("input")
 
-# --- Load corpus ---
 with open("rearranged_products.jsonl", "r", encoding="utf-8") as f:
     corpus = [json.loads(line) for line in f]
 
-# --- Stats ---
 stats = {
     "N": len(corpus),
     "avg_len": 50,
     "doc_len": {}
 }
 
-# --- Test queries ---
 test_queries = [
     "beanie",
     "warm winter beanie",
@@ -27,7 +24,7 @@ test_queries = [
     "grey winter hat"
 ]
 
-# Ensure output directory exists
+
 os.makedirs("output", exist_ok=True)
 
 doc_lookup = {doc["url"]: doc for doc in corpus}
@@ -55,7 +52,6 @@ for query in test_queries:
 
     all_results.append(formatted)
 
-# Save all queries results
 with open("output/search_results_all_queries.json", "w", encoding="utf-8") as f:
     json.dump(all_results, f, ensure_ascii=False, indent=4)
 
